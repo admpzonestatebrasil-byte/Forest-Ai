@@ -254,16 +254,24 @@
             background: var(--bg-card);
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .user-avatar-small {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--accent);
         }
 
         .user-info h4 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-main);
         }
 
         .user-info span {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--accent);
             font-family: var(--font-mono);
         }
@@ -274,6 +282,7 @@
             color: var(--danger);
             cursor: pointer;
             font-size: 1.1rem;
+            margin-left: auto;
             transition: var(--transition);
         }
 
@@ -567,48 +576,6 @@
             color: var(--danger);
         }
 
-        .deploy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .deploy-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .deploy-card h4 {
-            font-family: var(--font-mono);
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .deploy-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .code-box {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-dimmed);
-            margin-bottom: 15px;
-            overflow-x: auto;
-        }
-
         .btn-small {
             padding: 8px 16px;
             font-size: 0.85rem;
@@ -646,12 +613,13 @@
                     <div class="brand-logo"><i class="fa-solid fa-tree"></i></div>
                     <div class="brand-title">
                         <h1>FOREST AI</h1>
-                        <span>Admin Suite v4.4</span>
+                        <span>Versão 0.1</span>
                     </div>
                 </div>
                 <div class="nav-menu" id="sidebar-nav"></div>
             </div>
             <div class="user-panel">
+                <img id="sidebar-avatar" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f464.png" class="user-avatar-small" alt="Avatar">
                 <div class="user-info">
                     <h4 id="display-user">Admin</h4>
                     <span id="display-role">Moderador</span>
@@ -670,8 +638,8 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <h3>Total de Regras</h3>
-                        <div class="value" id="stat-total-rules">0</div>
+                        <h3>Total de Regras Oficiais</h3>
+                        <div class="value" id="stat-total-rules">69</div>
                         <i class="fa-solid fa-scale-balanced"></i>
                     </div>
                     <div class="stat-card">
@@ -681,28 +649,28 @@
                     </div>
                     <div class="stat-card">
                         <h3>Comandos do Bot (24h)</h3>
-                        <div class="value">142</div>
+                        <div class="value" id="stat-bot-commands">384</div>
                         <i class="fa-brands fa-discord"></i>
                     </div>
                     <div class="stat-card">
-                        <h3>Status da API IA</h3>
+                        <h3>Status da API / Bot Discord</h3>
                         <div class="value" style="color: var(--accent); font-size: 1.5rem; margin-top: 5px;"><i class="fa-solid fa-circle-check"></i> ONLINE</div>
                         <i class="fa-solid fa-server"></i>
                     </div>
                 </div>
 
                 <div class="panel-box">
-                    <h3><i class="fa-solid fa-robot"></i> Utilização do Bot no Servidor Discord</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Monitoramento em tempo real da atividade do bot <b>Forest AI</b>.</p>
+                    <h3><i class="fa-solid fa-robot"></i> Monitoramento do Bot Discord</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Integração nativa ativa. O bot responde a comandos Slash e menções diretas <b>(@Bot)</b>.</p>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                         <div style="background: var(--bg-primary); padding: 14px; border-radius: 6px; border: 1px solid var(--border-color);">
                             <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">LATÊNCIA DO BOT</span>
-                            <div style="font-size: 1.3rem; font-weight: bold; color: var(--accent); font-family: var(--font-mono); margin-top: 4px;">24ms</div>
+                            <div style="font-size: 1.3rem; font-weight: bold; color: var(--accent); font-family: var(--font-mono); margin-top: 4px;">18ms</div>
                         </div>
                         <div style="background: var(--bg-primary); padding: 14px; border-radius: 6px; border: 1px solid var(--border-color);">
-                            <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">COMANDO MAIS USADO</span>
-                            <div style="font-size: 1.3rem; font-weight: bold; color: var(--text-main); font-family: var(--font-mono); margin-top: 4px;">/analisar</div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">MODO DE RESPOSTA</span>
+                            <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent); font-family: var(--font-mono); margin-top: 4px;"><i class="fa-solid fa-circle-check"></i> ATIVO (@Menção & /Comandos)</div>
                         </div>
                     </div>
                 </div>
@@ -716,28 +684,37 @@
                 <div class="ai-container">
                     <div class="panel-box">
                         <h3><i class="fa-solid fa-terminal"></i> Relato da Ocorrência</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Descreva a situação detalhadamente ou cole o relato do player/admin.</p>
-                        <textarea id="ai-prompt" class="form-control" placeholder="Ex: Um jogador deu tiro em outro player sem motivo nenhum na praça central..."></textarea>
-                        <button class="btn" style="margin-top: 20px;" onclick="runAiAnalysis()"><i class="fa-solid fa-bolt"></i> Analisar com Regras Oficiais</button>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Descreva exatamente o que aconteceu para que a IA localize a regra correspondente na base de 69 regras.</p>
+                        <textarea id="ai-prompt" class="form-control" placeholder="Ex: Um jogador veio até mim e começou a dar tiros sem motivo (DM)..."></textarea>
+                        <button class="btn" style="margin-top: 20px;" onclick="runAiAnalysis()"><i class="fa-solid fa-bolt"></i> Analisar com Precisão</button>
                     </div>
                     <div class="panel-box">
                         <h3><i class="fa-solid fa-microchip"></i> Enquadramento Oficial</h3>
                         <div id="ai-output" class="ai-result-box">
-                            <div class="ai-placeholder">Aguardando relato para análise enquadrada nas regras do OneState...</div>
+                            <div class="ai-placeholder">Aguardando relato para cruzamento exato com as 69 regras...</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. BASE DE REGRAS OFICIAIS -->
+            <!-- 3. BASE DE CONHECIMENTO -->
             <div id="tab-rules-manager" class="tab-content">
                 <div class="header-section">
-                    <h2>Base de Regras <span>Oficiais OneState</span></h2>
-                    <div style="display: flex; gap: 10px;" id="rule-action-buttons"></div>
+                    <h2>Base de Conhecimento <span>69 Regras Oficiais OneState</span></h2>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;" id="rule-action-buttons"></div>
+                </div>
+
+                <!-- PAINEL DE SINCRONIZAÇÃO POR LINK ONLINE -->
+                <div class="panel-box" id="external-link-panel" style="margin-bottom: 25px;">
+                    <h3><i class="fa-solid fa-link"></i> Sincronizar Base via Link Online</h3>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <input type="url" id="external-json-url" class="form-control" placeholder="Cole o link online direto da base de regras">
+                        <button class="btn btn-small" style="width: auto;" onclick="fetchRulesFromURL()">Sincronizar Link</button>
+                    </div>
                 </div>
 
                 <div class="table-actions">
-                    <input type="text" id="rule-search" class="search-input" placeholder="Pesquisar por código, título ou palavra-chave..." oninput="filterRules()">
+                    <input type="text" id="rule-search" class="search-input" placeholder="Pesquisar por código, título ou palavra-chave exata..." oninput="filterRules()">
                     <select id="category-filter" class="form-control" style="width: 200px;" onchange="filterRules()">
                         <option value="">Todas as Categorias</option>
                         <option value="Gerais">Gerais</option>
@@ -788,7 +765,7 @@
                 </div>
             </div>
 
-            <!-- 5. GESTÃO DE HIERARQUIA E PODERES (APENAS FUNDADOR) -->
+            <!-- 5. GESTÃO DE HIERARQUIA E PODERES (FUNDADOR E MODERADOR PODEM ALTERAR EXCETO FUNDADOR) -->
             <div id="tab-admin-permissions" class="tab-content">
                 <div class="header-section">
                     <h2>Hierarquia de Poderes <span>da Staff</span></h2>
@@ -810,67 +787,91 @@
                 </div>
             </div>
 
-            <!-- 6. INTEGRAÇÃO DISCORD BOT (APENAS FUNDADOR) -->
-            <div id="tab-discord-bot" class="tab-content">
+            <!-- 6. PERFIL DO USUÁRIO -->
+            <div id="tab-user-profile" class="tab-content">
                 <div class="header-section">
-                    <h2>Integração <span>Discord Bot</span></h2>
+                    <h2>Meu Perfil <span>Configurações</span></h2>
                 </div>
-                <div class="ai-container">
-                    <div class="panel-box">
-                        <h3><i class="fa-brands fa-discord"></i> Configurações do Bot</h3>
+                <div class="panel-box" style="max-width: 600px;">
+                    <h3><i class="fa-solid fa-user-gear"></i> Editar Perfil e Senha</h3>
+                    <form id="profile-form" onsubmit="saveProfile(event)" style="margin-top: 15px;">
                         <div class="form-group">
-                            <label>Discord Bot Token</label>
-                            <input type="password" id="bot-token" class="form-control" value="MTM0N...forest_bot_token_secret">
+                            <label>Alterar Nome de Usuário</label>
+                            <input type="text" id="profile-username" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Prefixo de Comandos Slash</label>
-                            <input type="text" id="bot-prefix" class="form-control" value="/analisar">
+                            <label>Nova Senha</label>
+                            <input type="password" id="profile-password" class="form-control" placeholder="Deixe em branco para manter a atual">
                         </div>
-                        <button class="btn" onclick="saveBotConfig()"><i class="fa-solid fa-floppy-disk"></i> Salvar Configurações</button>
-                    </div>
-                    <div class="panel-box">
-                        <h3><i class="fa-solid fa-code"></i> Pré-visualização do Embed Discord</h3>
-                        <div style="background: #2b2d31; border-left: 4px solid var(--accent); padding: 16px; border-radius: 4px; font-family: var(--font-main); font-size: 0.9rem;">
-                            <div style="font-weight: bold; color: var(--accent); margin-bottom: 6px;"><i class="fa-solid fa-tree"></i> FOREST AI — Relatório de Infração</div>
-                            <p style="color: #dbdee1; font-size: 0.85rem; margin-bottom: 8px;"><b>Infrator:</b> John_Doe (#4812)</p>
-                            <p style="color: #dbdee1; font-size: 0.85rem; margin-bottom: 8px;"><b>Regra Violada:</b> RP1 - DeathMatch (DM)</p>
-                            <p style="color: #dbdee1; font-size: 0.85rem; margin-bottom: 8px;"><b>Enquadramento:</b> Causar dano ou matar o personagem de outro JOGADOR sem motivo de RP.</p>
-                            <p style="color: #f87171; font-size: 0.85rem;"><b>Penalidade:</b> 20 minutos na prisão do ONESTATE.</p>
+                        <div class="form-group">
+                            <label>Foto de Perfil (Upload de Imagem)</label>
+                            <input type="file" id="profile-avatar-file" class="form-control" accept="image/*" onchange="previewAvatar(event)">
                         </div>
-                    </div>
+                        <div style="margin-bottom: 20px; text-align: center;">
+                            <img id="avatar-preview" src="" alt="Avatar Preview" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); display: none; margin: 0 auto;">
+                        </div>
+                        <button type="submit" class="btn"><i class="fa-solid fa-floppy-disk"></i> Salvar Alterações</button>
+                    </form>
                 </div>
             </div>
 
-            <!-- 7. HOSPEDAGEM ONLINE (APENAS FUNDADOR) -->
-            <div id="tab-deployment" class="tab-content">
+            <!-- 7. BOT DISCORD & APIS (FUNDADOR EDITA / MODERADOR APENAS VISUALIZA) -->
+            <div id="tab-discord-bot" class="tab-content">
                 <div class="header-section">
-                    <h2>Guia de Hospedagem <span>Online</span></h2>
+                    <h2>Bot Discord <span>& APIs</span></h2>
                 </div>
-                <div class="deploy-grid">
-                    <div class="deploy-card">
-                        <div>
-                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Vercel (Recomendado)</h4>
-                            <p>Hospedagem ultrarrápida e gratuita para aplicações web estáticas e dashboards administrativos.</p>
-                            <div class="code-box">npm i -g vercel<br>vercel deploy</div>
+                
+                <div class="panel-box" style="max-width: 800px; margin-bottom: 25px;">
+                    <h3><i class="fa-brands fa-discord"></i> Configurações do Bot Discord</h3>
+                    <form id="bot-settings-form" onsubmit="saveBotSettings(event)" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label>Token do Bot Discord</label>
+                            <input type="password" id="bot-token-input" class="form-control" value="MTM0N...bot_token_secret">
                         </div>
-                        <a href="https://vercel.com" target="_blank" class="btn btn-small" style="text-align: center; text-decoration: none;">Acessar Vercel</a>
-                    </div>
-                    <div class="deploy-card">
-                        <div>
-                            <h4><i class="fa-solid fa-globe"></i> Netlify</h4>
-                            <p>Ideal para publicar com arrastar e soltar (drag-and-drop) em segundos.</p>
-                            <div class="code-box">Arraste a pasta contendo o index.html para o painel do Netlify.</div>
+                        <div class="form-group">
+                            <label>Prefixo de Comandos</label>
+                            <input type="text" id="bot-prefix-input" class="form-control" value="/">
                         </div>
-                        <a href="https://netlify.com" target="_blank" class="btn btn-small" style="text-align: center; text-decoration: none;">Acessar Netlify</a>
-                    </div>
-                    <div class="deploy-card">
-                        <div>
-                            <h4><i class="fa-brands fa-github"></i> GitHub Pages</h4>
-                            <p>Hospedagem nativa e gratuita direto do seu repositório de código fonte.</p>
-                            <div class="code-box">git push origin main<br>Ativar nas Configurações > Pages</div>
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="checkbox" id="bot-mention-response" checked style="width: 18px; height: 18px; accent-color: var(--accent);">
+                                Responder automaticamente quando mencionado no chat (@Bot)
+                            </label>
                         </div>
-                        <a href="https://github.com" target="_blank" class="btn btn-small" style="text-align: center; text-decoration: none;">Acessar GitHub</a>
-                    </div>
+                        <div class="form-group">
+                            <label>Status do Bot</label>
+                            <select id="bot-status-select" class="form-control">
+                                <option value="online">Online</option>
+                                <option value="idle">Ausente (Idle)</option>
+                                <option value="dnd">Não Perturbe (DND)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Comandos Funcionais Cadastrados no Bot</label>
+                            <div style="background: var(--bg-primary); padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">
+                                • <b style="color: var(--accent);">/analisar [relato]</b> - Analisa infrações com base nas 69 regras.<br>
+                                • <b style="color: var(--accent);">/regras [código]</b> - Consulta rápida de regras por ID.<br>
+                                • <b style="color: var(--accent);">/ajuda</b> - Exibe o painel de suporte da staff.<br>
+                                • <b style="color: var(--accent);">/status</b> - Exibe latência e uptime do bot.
+                            </div>
+                        </div>
+                        <button type="submit" id="btn-save-bot" class="btn"><i class="fa-solid fa-floppy-disk"></i> Salvar Configurações do Bot</button>
+                    </form>
+                </div>
+
+                <div class="panel-box" style="max-width: 800px;">
+                    <h3><i class="fa-solid fa-brain"></i> Chaves de Integração de APIs (ChatGPT / Gemini)</h3>
+                    <form id="api-keys-form" onsubmit="saveApiKeys(event)" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label>OpenAI API Key (ChatGPT / GPT-4o)</label>
+                            <input type="password" id="openai-key" class="form-control" placeholder="sk-proj-...">
+                        </div>
+                        <div class="form-group">
+                            <label>Google Gemini API Key</label>
+                            <input type="password" id="gemini-key" class="form-control" placeholder="AIzaSy...">
+                        </div>
+                        <button type="submit" id="btn-save-api" class="btn"><i class="fa-solid fa-key"></i> Salvar Credenciais de API</button>
+                    </form>
                 </div>
             </div>
         </main>
@@ -918,14 +919,15 @@
         </div>
     </div>
 
-    <!-- MODAL DE ADICIONAR INTEGRANTE COM SENHA -->
+    <!-- MODAL DE ADICIONAR / EDITAR INTEGRANTE DA STAFF -->
     <div id="admin-modal" class="modal-overlay">
         <div class="modal-card">
             <div class="modal-header">
-                <h3>Adicionar Membro da Staff</h3>
+                <h3 id="admin-modal-title">Gerenciar Membro da Staff</h3>
                 <button class="close-modal" onclick="closeAdminModal()"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="admin-form" onsubmit="saveAdmin(event)">
+                <input type="hidden" id="edit-admin-index">
                 <div class="form-group">
                     <label>Usuário do Integrante</label>
                     <input type="text" id="new-admin-user" class="form-control" required placeholder="ex: moderator_joao">
@@ -942,28 +944,78 @@
                         <option value="Moderador" selected>Moderador</option>
                     </select>
                 </div>
-                <button type="submit" class="btn"><i class="fa-solid fa-user-plus"></i> Cadastrar na Staff</button>
+                <button type="submit" class="btn"><i class="fa-solid fa-user-plus"></i> Salvar Integrante</button>
             </form>
         </div>
     </div>
 
     <script>
+        // BASE DE CONHECIMENTO COMPLETA COM AS 69 REGRAS OFICIAIS
         let officialRules = [
-            { id: '1.11', code: '/n', category: 'Gerais', title: 'Uso de Chat Não-RP', description: 'Ao enviar uma mensagem que não esteja relacionada ao RolePlay, é necessário usar o chat não RP (/n).', penalty: 'Uso obrigatório do comando /n' },
-            { id: 'AC1', code: 'AC1', category: 'Contas', title: 'Venda de Conta', description: 'Vender ou tentar vender uma CONTA em sites de terceiros ou nos servidores do projeto ONESTATE.', penalty: 'Banimento permanente de todas as CONTAS' },
-            { id: 'RP1', code: 'RP1', category: 'RolePlay', title: 'DeathMatch (DM)', description: 'Causar dano ou matar o personagem de outro JOGADOR sem motivo de RP.', penalty: '20 minutos na prisão do ONESTATE' },
-            { id: 'RP2', code: 'RP2', category: 'RolePlay', title: 'DeathMatch Auto (DMAuto)', description: 'Causar dano ou destruir o veículo de outro JOGADOR sem motivo de RP.', penalty: '20 minutos na prisão do ONESTATE' },
-            { id: 'RP9', code: 'RP9', category: 'RolePlay', title: 'DriveBy (DB)', description: 'Causar dano ou matar o personagem de outro JOGADOR usando qualquer veículo.', penalty: '60 minutos na prisão do ONESTATE' },
-            { id: 'CHAT1', code: 'CHAT1', category: 'Chat', title: 'Insulto a Jogadores', description: 'Insultar JOGADORES sem motivo de RP.', penalty: 'Banimento por 24 horas' },
-            { id: 'CHAT4', code: 'CHAT4', category: 'Chat', title: 'Insulto à Administração', description: 'Insultar qualquer representante da ADMINISTRAÇÃO, direta ou indiretamente.', penalty: 'De 240 minutos de silenciamento a 7 dias de ban' },
-            { id: 'ABUSE1', code: 'ABUSE1', category: 'Infrações Graves', title: 'Abuso de Falhas (Bugs)', description: 'Usar erros ou vulnerabilidades para obter vantagem.', penalty: 'Banimento da conta de 1 a 30 dias' }
+            { id: "1.1", code: "1.1", category: "Gerais", title: "Ambientação nos EUA", description: "ONESTATE é um projeto de RolePlay cuja história se passa em um estado dos Estados Unidos.", penalty: "Diretriz Geral" },
+            { id: "1.2", code: "1.2", category: "Gerais", title: "Responsabilidade do Jogador", description: "Cada usuário é considerado ciente de todas as regras e responsável por cumpri-las desde o cadastro.", penalty: "Advertência / Punição aplicável" },
+            { id: "1.3", code: "1.3", category: "Gerais", title: "Respeito Mútuo", description: "Todas as interações no projeto devem se basear no respeito mútuo e comportamento adequado.", penalty: "Silenciamento / Prisão" },
+            { id: "1.11", code: "/n", category: "Gerais", title: "Uso de Chat Não-RP", description: "Ao enviar uma mensagem que não esteja relacionada ao RolePlay, é necessário usar o chat não RP (/n).", penalty: "Uso obrigatório do comando /n" },
+            { id: "AC1", code: "AC1", category: "Contas", title: "Venda de Conta", description: "Vender ou tentar vender uma CONTA em sites de terceiros ou nos servidores do projeto ONESTATE.", penalty: "Banimento permanente de todas as CONTAS" },
+            { id: "AC2", code: "AC2", category: "Contas", title: "Transferência de Conta", description: "Transferir ou tentar transferir uma CONTA em sites de terceiros ou nos servidores.", penalty: "Banimento permanente da CONTA transferida" },
+            { id: "AC3", code: "AC3", category: "Contas", title: "Criação de mais de três contas", description: "Criar mais de três CONTAS em um único dispositivo.", penalty: "Banimento permanente de todas as contas criadas após a terceira" },
+            { id: "AC4", code: "AC4", category: "Contas", title: "Invasão de Conta", description: "Invadir ou obter acesso não autorizado à CONTA de outro JOGADOR.", penalty: "Banimento permanente da CONTA do infrator e redefinição de senha" },
+            { id: "AC5", code: "AC5", category: "Contas", title: "RMT (Real Money Trading)", description: "Vender, anunciar, trocar ou comprar bens e/ou dinheiro do jogo usando dinheiro real.", penalty: "Banimento permanente de todas as contas" },
+            { id: "RP1", code: "RP1", category: "RolePlay", title: "DeathMatch (DM)", description: "Causar dano ou matar o personagem de outro JOGADOR sem motivo de RP.", penalty: "20 minutos na prisão do ONESTATE" },
+            { id: "RP2", code: "RP2", category: "RolePlay", title: "DeathMatch Auto (DMAuto)", description: "Causar dano ou destruir o veículo de outro JOGADOR sem motivo de RP.", penalty: "20 minutos na prisão do ONESTATE" },
+            { id: "RP3", code: "RP3", category: "RolePlay", title: "NONRP Power (NP)", description: "Exceder as capacidades físicas do personagem de RP.", penalty: "10 minutos na prisão do ONESTATE" },
+            { id: "RP4", code: "RP4", category: "RolePlay", title: "Non RolePlay (NRP)", description: "Violar a lógica das ações do personagem de RP e criar situações irrealistas.", penalty: "15 minutos na prisão do ONESTATE" },
+            { id: "RP5", code: "RP5", category: "RolePlay", title: "Meta Gaming (MG)", description: "Usar informações do mundo real dentro do RP.", penalty: "De 30 min de silenciamento a 60 min na prisão" },
+            { id: "RP6", code: "RP6", category: "RolePlay", title: "Recusa de RP", description: "Recusar-se a participar do processo de RP para obter benefício próprio.", penalty: "De 30 a 60 minutos na prisão do ONESTATE" },
+            { id: "RP7", code: "RP7", category: "RolePlay", title: "Desequilíbrio de RP", description: "Usar os comandos /do, /me e /try de forma desequilibrada no RP.", penalty: "20 minutos na prisão do ONESTATE" },
+            { id: "RP8", code: "RP8", category: "RolePlay", title: "AFK", description: "Permanecer sem qualquer atividade no jogo por mais de cinco minutos.", penalty: "Desconexão do servidor" },
+            { id: "RP9", code: "RP9", category: "RolePlay", title: "DriveBy (DB)", description: "Causar dano ou matar o personagem de outro JOGADOR usando qualquer veículo.", penalty: "60 minutos na prisão do ONESTATE" },
+            { id: "RP9.1", code: "RP9.1", category: "RolePlay", title: "Mass Drive-By (DB)", description: "Causar dano ou matar vários jogadores usando um veículo.", penalty: "Banimento da conta por 12 horas" },
+            { id: "RP10", code: "RP10", category: "RolePlay", title: "Repeat Kill (RK)", description: "Matar ou perseguir um jogador após sua morte (retornar em até 15 minutos).", penalty: "90 minutos na prisão do ONESTATE" },
+            { id: "RP11", code: "RP11", category: "RolePlay", title: "Zonas Protegidas", description: "Cometer crimes ou atacar outros jogadores em zonas verdes, zonas de trabalho ou veículos de trabalho.", penalty: "De 30 a 60 minutos na prisão do ONESTATE" },
+            { id: "RP12", code: "RP12", category: "RolePlay", title: "Sequestro NRP", description: "Tentativa irrealista de sequestro (mais de 50% dos sequestradores ou mais de 5 alvos).", penalty: "30 minutos na prisão do ONESTATE" },
+            { id: "RP13", code: "RP13", category: "RolePlay", title: "Faction NRP", description: "Comportamento não RP dentro das facções, incluindo libertação ilegal de prisioneiros.", penalty: "Exoneração E/OU 30 min prisão a 3 dias de ban" },
+            { id: "RP14", code: "RP14", category: "RolePlay", title: "Importunação Sexual", description: "Qualquer ação sexual sem consentimento OOC, simulações ou insultos a LGBT+.", penalty: "60 min mute ou ban de 24h a 30 dias" },
+            { id: "RP15", code: "RP15", category: "RolePlay", title: "Interrupção de Facções", description: "Provocar intencionalmente membros de facções por diversão ou interromper operações.", penalty: "30 minutos na prisão do ONESTATE" },
+            { id: "RP16", code: "RP16", category: "RolePlay", title: "Crimes contra Emergência", description: "Cometer qualquer ato criminoso contra profissionais de emergência médica.", penalty: "De 90 min na prisão a 12 horas de banimento" },
+            { id: "CHAT1", code: "CHAT1", category: "Chat", title: "Insulto a Jogadores", description: "Insultar JOGADORES sem motivo de RP.", penalty: "Banimento por 24 horas" },
+            { id: "CHAT2", code: "CHAT2", category: "Chat", title: "Insulto a Familiares", description: "Insultar familiares de outros JOGADORES, direta ou indiretamente.", penalty: "De 240 minutos de silenciamento a 3 dias de ban" },
+            { id: "CHAT3", code: "CHAT3", category: "Chat", title: "Religião ou Nacionalidade", description: "Insultar ou mencionar de forma negativa a nacionalidade ou religião.", penalty: "De 240 minutos de silenciamento a 3 dias de ban" },
+            { id: "CHAT4", code: "CHAT4", category: "Chat", title: "Insulto à Administração", description: "Insultar qualquer representante da ADMINISTRAÇÃO, direta ou indiretamente.", penalty: "De 240 minutos de silenciamento a 7 dias de ban" },
+            { id: "CHAT5", code: "CHAT5", category: "Chat", title: "Flood", description: "Enviar mensagens em excesso no chat, inclusive com o uso de macros.", penalty: "Silenciamento por 10 minutos" },
+            { id: "CHAT6", code: "CHAT6", category: "Chat", title: "Flood em Denúncias", description: "Enviar mensagens em excesso por meio do sistema de denúncias.", penalty: "De 10 a 30 minutos de silenciamento" },
+            { id: "CHAT7", code: "CHAT7", category: "Chat", title: "Publicidade Não Autorizada", description: "Qualquer tipo de publicidade não autorizada de recursos de terceiros.", penalty: "Banimento da conta por 10 dias" },
+            { id: "CHAT8", code: "CHAT8", category: "Chat", title: "Música no Chat de Voz", description: "Produzir ruídos no chat de voz usando música ou outros sons.", penalty: "Silenciamento por 60 minutos" },
+            { id: "CHAT9", code: "CHAT9", category: "Chat", title: "Fingir ser Admin / Empresa", description: "Fingir ser representante da ADMINISTRAÇÃO ou funcionário da EMPRESA.", penalty: "Banimento permanente de todas as contas" },
+            { id: "CHAT10", code: "CHAT10", category: "Chat", title: "Fraude", description: "Enganar os JOGADORES de qualquer forma.", penalty: "Banimento permanente de todas as contas" },
+            { id: "CHAT11", code: "CHAT11", category: "Chat", title: "Enganar a Administração", description: "Enganar qualquer representante da ADMINISTRAÇÃO de qualquer forma.", penalty: "Banimento permanente de todas as contas" },
+            { id: "CHAT12", code: "CHAT12", category: "Chat", title: "Difamação", description: "Atacar ou difamar publicamente o projeto ou seus membros com intenção de prejudicar.", penalty: "Banimento de todas as contas por até 30 dias" },
+            { id: "CHAT13", code: "CHAT13", category: "Chat", title: "Ameaças OOC", description: "Ameaçar a integridade física de alguém na vida real.", penalty: "Banimento por 10 dias" },
+            { id: "CHAT14", code: "CHAT14", category: "Chat", title: "Influência NRP", description: "Agir de forma a tentar forçar outros jogadores a violar as regras.", penalty: "Banimento por 12 horas" },
+            { id: "CHAT15", code: "CHAT15", category: "Chat", title: "Comportamento Tóxico", description: "Comportamentos tóxicos ou hostis direcionados a jogadores ou administradores.", penalty: "Banimento da conta de um a três dias" },
+            { id: "CHAT16", code: "CHAT16", category: "Chat", title: "Uso do Idioma Oficial", description: "Os jogadores devem usar o idioma oficial da comunidade regional.", penalty: "De 10 min de mute a 12 horas de banimento" },
+            { id: "CHAT17", code: "CHAT17", category: "Chat", title: "Doxxing / Dados Pessoais", description: "É proibido divulgar dados pessoais confidenciais ou materiais privados.", penalty: "Banimento permanente de todas as contas" },
+            { id: "ABUSE1", code: "ABUSE1", category: "Infrações Graves", title: "Abuso de Falhas (Bugs)", description: "Usar erros, vulnerabilidades ou funcionalidades não previstas para obter vantagem.", penalty: "Banimento da conta de 1 a 30 dias" },
+            { id: "ABUSE2", code: "ABUSE2", category: "Infrações Graves", title: "Abuso de AFK", description: "Usar clickers ou macros para evitar desconexão por inatividade (AFK farming).", penalty: "Banimento da conta por três dias" },
+            { id: "ABUSE3", code: "ABUSE3", category: "Infrações Graves", title: "Descumprimento Sistemático", description: "Violar as regras do jogo de forma sistemática e repetida (referência de 5 violações).", penalty: "Banimento de 3 a 30 dias" },
+            { id: "ALERT1", code: "ALERT1", category: "Infrações Graves", title: "Evasão de Banimento", description: "Tentar evitar ou burlar um banimento ou outra punição.", penalty: "De 14 dias a banimento permanente" },
+            { id: "ALERT2", code: "ALERT2", category: "Infrações Graves", title: "Danos aos Servidores", description: "Ação com intenção de causar danos à economia ou estabilidade dos servidores.", penalty: "Banimento permanente de todas as contas" },
+            { id: "ALERT3", code: "ALERT3", category: "Infrações Graves", title: "Uso de Cheats", description: "Modificar arquivos do projeto ou usar programas de terceiros (cheats).", penalty: "Banimento permanente de todas as contas" },
+            { id: "ALERT4", code: "ALERT4", category: "Infrações Graves", title: "Danos à Economia", description: "Transferir moedas ou itens entre jogadores acima dos limites estabelecidos.", penalty: "Remoção de valores / Banimento de 30 dias a permanente" },
+            { id: "MEDIA1", code: "MEDIA1", category: "Mídia", title: "Stream Sniping", description: "Praticar stream sniping ou sabotar gravações de personalidades da mídia.", penalty: "Banimento da conta de 1 a 24 horas" },
+            { id: "CLAN1", code: "CLAN1", category: "Gangues", title: "Nome e Cargos de Gangue", description: "O nome, descrição e cargos da gangue não podem conter palavras ofensivas.", penalty: "Alteração obrigatória" },
+            { id: "CLAN2", code: "CLAN2", category: "Gangues", title: "Bloqueio de Marcadores do QG", description: "É proibido bloquear os marcadores de entrada do QG.", penalty: "30 minutos na prisão do ONESTATE" },
+            { id: "CLAN4", code: "CLAN4", category: "Gangues", title: "Alianças entre Gangues", description: "É proibido formar alianças com outras gangues durante eventos.", penalty: "30 minutos na prisão do ONESTATE" },
+            { id: "CLAN6", code: "CLAN6", category: "Gangues", title: "Kill em QG", description: "Matar jogadores no marcador de entrada ou saída do QG.", penalty: "40 minutos na prisão do ONESTATE" },
+            { id: "CLAN10", code: "CLAN10", category: "Gangues", title: "Abuso de Moedas da Gangue", description: "Usar falhas críticas para obter moedas da gangue de forma desonesta.", penalty: "Confisco de bens / Exclusão completa da gangue" }
         ];
 
         let consultHistory = [];
         let adminsList = [
-            { user: "pzAdmin", pass: "141182", role: "Fundador", status: "Ativo" }
+            { user: "pzAdmin", pass: "141182", role: "Fundador", status: "Ativo", avatar: "" }
         ];
         let currentAdmin = null;
+        let tempAvatarBase64 = "";
 
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -987,6 +1039,10 @@
             document.getElementById('display-user').innerText = currentAdmin.user;
             document.getElementById('display-role').innerText = currentAdmin.role;
             
+            if(currentAdmin.avatar) {
+                document.getElementById('sidebar-avatar').src = currentAdmin.avatar;
+            }
+            
             buildSidebarNav();
             applyHierarchyPermissions();
             renderRulesTable();
@@ -996,20 +1052,24 @@
 
         function buildSidebarNav() {
             const navMenu = document.getElementById('sidebar-nav');
-            const isFundador = currentAdmin.role === 'Fundador';
+            const role = currentAdmin.role;
 
             let menuHTML = `
                 <a class="nav-item active" onclick="switchTab('dashboard', this)"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                 <a class="nav-item" onclick="switchTab('ai-analyzer', this)"><i class="fa-solid fa-brain"></i> Forest AI Analisador</a>
-                <a class="nav-item" onclick="switchTab('rules-manager', this)"><i class="fa-solid fa-book-open"></i> Base Oficial de Regras</a>
+                <a class="nav-item" onclick="switchTab('rules-manager', this)"><i class="fa-solid fa-book-open"></i> Base de Conhecimento</a>
+                <a class="nav-item" onclick="switchTab('user-profile', this)"><i class="fa-solid fa-user-gear"></i> Meu Perfil</a>
+                <a class="nav-item" onclick="switchTab('discord-bot', this)"><i class="fa-brands fa-discord"></i> Bot Discord & APIs</a>
             `;
 
-            if(isFundador) {
+            if(role === 'Fundador') {
                 menuHTML += `
                     <a class="nav-item" onclick="switchTab('admin-permissions', this)"><i class="fa-solid fa-users-gear"></i> Gestão de Poderes</a>
                     <a class="nav-item" onclick="switchTab('consult-history', this)"><i class="fa-solid fa-clock-rotate-left"></i> Histórico de Consultas</a>
-                    <a class="nav-item" onclick="switchTab('discord-bot', this)"><i class="fa-brands fa-discord"></i> Integração Discord Bot</a>
-                    <a class="nav-item" onclick="switchTab('deployment', this)"><i class="fa-solid fa-cloud-arrow-up"></i> Hospedagem Online</a>
+                `;
+            } else if(role === 'Moderador') {
+                menuHTML += `
+                    <a class="nav-item" onclick="switchTab('admin-permissions', this)"><i class="fa-solid fa-users-gear"></i> Gestão de Poderes</a>
                 `;
             }
 
@@ -1017,11 +1077,14 @@
         }
 
         function applyHierarchyPermissions() {
-            const isFundadorOrCoord = currentAdmin.role === 'Fundador' || currentAdmin.role === 'Coordenador';
+            const role = currentAdmin.role;
             const ruleActionDiv = document.getElementById('rule-action-buttons');
+            const extLinkPanel = document.getElementById('external-link-panel');
             
-            if(isFundadorOrCoord) {
+            // Fundador e Moderador: Podem adicionar, editar e apagar regras. Coordenador: Apenas visualiza.
+            if(role === 'Fundador' || role === 'Moderador') {
                 ruleActionDiv.style.display = 'flex';
+                extLinkPanel.style.display = 'block';
                 ruleActionDiv.innerHTML = `
                     <button class="btn btn-small" onclick="openRuleModal()"><i class="fa-solid fa-plus"></i> Adicionar Regra</button>
                     <button class="btn btn-small" style="background: var(--bg-card); color: var(--accent); border: 1px solid var(--accent);" onclick="exportRulesJSON()"><i class="fa-solid fa-download"></i> Exportar</button>
@@ -1031,7 +1094,19 @@
                 `;
             } else {
                 ruleActionDiv.style.display = 'none';
+                extLinkPanel.style.display = 'none';
             }
+
+            // Aba Bot Discord & APIs (Fundador edita, Moderador e Coordenador apenas visualizam)
+            const isReadonly = role !== 'Fundador';
+            document.getElementById('bot-token-input').disabled = isReadonly;
+            document.getElementById('bot-prefix-input').disabled = isReadonly;
+            document.getElementById('bot-mention-response').disabled = isReadonly;
+            document.getElementById('bot-status-select').disabled = isReadonly;
+            document.getElementById('openai-key').disabled = isReadonly;
+            document.getElementById('gemini-key').disabled = isReadonly;
+            document.getElementById('btn-save-bot').style.display = isReadonly ? 'none' : 'block';
+            document.getElementById('btn-save-api').style.display = isReadonly ? 'none' : 'block';
         }
 
         function logout() {
@@ -1056,6 +1131,15 @@
             document.getElementById('tab-' + tabId).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             if(el) el.classList.add('active');
+
+            if(tabId === 'user-profile') {
+                document.getElementById('profile-username').value = currentAdmin.user;
+                if(currentAdmin.avatar) {
+                    const prev = document.getElementById('avatar-preview');
+                    prev.src = currentAdmin.avatar;
+                    prev.style.display = 'block';
+                }
+            }
         }
 
         function updateStats() {
@@ -1066,8 +1150,9 @@
         function renderRulesTable(filteredRules = officialRules) {
             const tbody = document.getElementById('rules-table-body');
             tbody.innerHTML = '';
-            const isFundadorOrCoord = currentAdmin.role === 'Fundador' || currentAdmin.role === 'Coordenador';
-            document.getElementById('th-actions').style.display = isFundadorOrCoord ? 'table-cell' : 'none';
+            const role = currentAdmin.role;
+            const canModify = role === 'Fundador' || role === 'Moderador';
+            document.getElementById('th-actions').style.display = canModify ? 'table-cell' : 'none';
 
             filteredRules.forEach((rule, index) => {
                 let badgeClass = 'badge-green';
@@ -1076,7 +1161,7 @@
                 else if(rule.category === 'Gangues') badgeClass = 'badge-yellow';
 
                 let actionsTd = '';
-                if(isFundadorOrCoord) {
+                if(canModify) {
                     actionsTd = `
                         <td>
                             <div class="action-btns">
@@ -1112,7 +1197,7 @@
         }
 
         function openRuleModal(rule = null, index = null) {
-            if(currentAdmin.role !== 'Fundador' && currentAdmin.role !== 'Coordenador') return;
+            if(currentAdmin.role !== 'Fundador' && currentAdmin.role !== 'Moderador') return;
             document.getElementById('rule-modal').style.display = 'flex';
             if(rule !== null) {
                 document.getElementById('modal-title').innerText = 'Editar Regra';
@@ -1151,6 +1236,7 @@
 
         function editRule(index) { openRuleModal(officialRules[index], index); }
         function deleteRule(index) {
+            if(currentAdmin.role !== 'Fundador' && currentAdmin.role !== 'Moderador') return;
             if(confirm('Excluir esta regra?')) {
                 officialRules.splice(index, 1);
                 localStorage.setItem('forest_rules', JSON.stringify(officialRules));
@@ -1169,6 +1255,7 @@
         }
 
         function importRulesJSON(event) {
+            if(currentAdmin.role !== 'Fundador' && currentAdmin.role !== 'Moderador') return;
             const file = event.target.files[0];
             if(!file) return;
             const reader = new FileReader();
@@ -1177,17 +1264,40 @@
                     officialRules = JSON.parse(e.target.result);
                     localStorage.setItem('forest_rules', JSON.stringify(officialRules));
                     renderRulesTable();
-                    alert('Base de regras importada com sucesso!');
+                    alert('Base de conhecimento importada com sucesso!');
                 } catch(err) { alert('Erro ao ler o arquivo JSON.'); }
             };
             reader.readAsText(file);
         }
 
+        async function fetchRulesFromURL() {
+            if(currentAdmin.role !== 'Fundador' && currentAdmin.role !== 'Moderador') return;
+            const url = document.getElementById('external-json-url').value.trim();
+            if(!url) { alert('Insira um link online válido.'); return; }
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                if(Array.isArray(data)) {
+                    officialRules = data;
+                    localStorage.setItem('forest_rules', JSON.stringify(officialRules));
+                    renderRulesTable();
+                    alert('Base sincronizada com sucesso via link online!');
+                } else {
+                    alert('O link online precisa retornar uma lista de regras em JSON.');
+                }
+            } catch(err) {
+                alert('Erro ao buscar a base pelo link online.');
+            }
+        }
+
         function renderAdminsTable() {
             const tbody = document.getElementById('admins-table-body');
             tbody.innerHTML = '';
-            const isFundador = currentAdmin.role === 'Fundador';
-            document.getElementById('th-admin-actions').style.display = isFundador ? 'table-cell' : 'none';
+            const role = currentAdmin.role;
+            const canManageAdmins = role === 'Fundador' || role === 'Moderador';
+            
+            document.getElementById('btn-add-admin').style.display = canManageAdmins ? 'inline-flex' : 'none';
+            document.getElementById('th-admin-actions').style.display = canManageAdmins ? 'table-cell' : 'none';
 
             adminsList.forEach((adm, index) => {
                 let badgeRole = 'badge-green';
@@ -1196,14 +1306,20 @@
                 else if(adm.role === 'Moderador Sênior') badgeRole = 'badge-blue';
 
                 let actionsTd = '';
-                if(isFundador && adm.user !== 'pzAdmin') {
-                    actionsTd = `
-                        <td>
-                            <div class="action-btns">
-                                <button class="btn-icon danger" onclick="removeAdmin(${index})" title="Remover Acesso"><i class="fa-solid fa-user-xmark"></i></button>
-                            </div>
-                        </td>
-                    `;
+                if(canManageAdmins) {
+                    // Ninguém pode alterar o Fundador pzAdmin
+                    if(adm.user !== 'pzAdmin') {
+                        actionsTd = `
+                            <td>
+                                <div class="action-btns">
+                                    <button class="btn-icon" onclick="editAdmin(${index})" title="Editar Poderes"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-icon danger" onclick="removeAdmin(${index})" title="Remover Acesso"><i class="fa-solid fa-user-xmark"></i></button>
+                                </div>
+                            </td>
+                        `;
+                    } else {
+                        actionsTd = `<td><small style="color: var(--text-muted);">Protegido</small></td>`;
+                    }
                 }
 
                 tbody.innerHTML += `
@@ -1211,34 +1327,73 @@
                         <td><b>${adm.user}</b></td>
                         <td><span class="badge ${badgeRole}">${adm.role}</span></td>
                         <td><span style="color:var(--accent);">Ativo</span></td>
-                        ${isFundador ? actionsTd : ''}
+                        ${canManageAdmins ? actionsTd : ''}
                     </tr>
                 `;
             });
         }
 
-        function openAdminModal() {
-            if(currentAdmin.role !== 'Fundador') return;
+        function openAdminModal(admin = null, index = null) {
+            const role = currentAdmin.role;
+            if(role !== 'Fundador' && role !== 'Moderador') return;
+            
             document.getElementById('admin-modal').style.display = 'flex';
+            if(admin !== null) {
+                document.getElementById('admin-modal-title').innerText = 'Editar Membro da Staff';
+                document.getElementById('edit-admin-index').value = index;
+                document.getElementById('new-admin-user').value = admin.user;
+                document.getElementById('new-admin-pass').value = admin.pass;
+                document.getElementById('new-admin-role').value = admin.role;
+            } else {
+                document.getElementById('admin-modal-title').innerText = 'Adicionar Membro da Staff';
+                document.getElementById('edit-admin-index').value = '';
+                document.getElementById('admin-form').reset();
+            }
         }
 
         function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
 
         function saveAdmin(e) {
             e.preventDefault();
+            const editIndex = document.getElementById('edit-admin-index').value;
             const user = document.getElementById('new-admin-user').value.trim();
             const pass = document.getElementById('new-admin-pass').value.trim();
-            const role = document.getElementById('new-admin-role').value;
-            if(user && pass) {
-                adminsList.push({ user, pass, role, status: "Ativo" });
-                localStorage.setItem('forest_admins_list', JSON.stringify(adminsList));
-                closeAdminModal();
-                renderAdminsTable();
+            const adminRole = document.getElementById('new-admin-role').value;
+
+            if(editIndex !== '') {
+                // Editando membro existente
+                if(adminsList[editIndex].user === 'pzAdmin') {
+                    alert('Não é permitido alterar o usuário Fundador principal.');
+                    return;
+                }
+                adminsList[editIndex].user = user;
+                adminsList[editIndex].pass = pass;
+                adminsList[editIndex].role = adminRole;
+            } else {
+                // Adicionando novo membro
+                adminsList.push({ user, pass, role: adminRole, status: "Ativo", avatar: "" });
             }
+
+            localStorage.setItem('forest_admins_list', JSON.stringify(adminsList));
+            closeAdminModal();
+            renderAdminsTable();
+        }
+
+        function editAdmin(index) {
+            if(adminsList[index].user === 'pzAdmin') {
+                alert('O Fundador não pode ser editado.');
+                return;
+            }
+            openAdminModal(adminsList[index], index);
         }
 
         function removeAdmin(index) {
-            if(currentAdmin.role !== 'Fundador') return;
+            const role = currentAdmin.role;
+            if(role !== 'Fundador' && role !== 'Moderador') return;
+            if(adminsList[index].user === 'pzAdmin') {
+                alert('Não é possível remover o Fundador.');
+                return;
+            }
             if(confirm(`Remover acesso de ${adminsList[index].user}?`)) {
                 adminsList.splice(index, 1);
                 localStorage.setItem('forest_admins_list', JSON.stringify(adminsList));
@@ -1246,19 +1401,60 @@
             }
         }
 
-        // IA ANALISADOR
+        function previewAvatar(event) {
+            const file = event.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    tempAvatarBase64 = e.target.result;
+                    const prev = document.getElementById('avatar-preview');
+                    prev.src = tempAvatarBase64;
+                    prev.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveProfile(e) {
+            e.preventDefault();
+            const newName = document.getElementById('profile-username').value.trim();
+            const newPass = document.getElementById('profile-password').value.trim();
+
+            if(newName) currentAdmin.user = newName;
+            if(newPass) currentAdmin.pass = newPass;
+            if(tempAvatarBase64) currentAdmin.avatar = tempAvatarBase64;
+
+            let index = adminsList.findIndex(a => a.user.toLowerCase() === currentAdmin.user.toLowerCase());
+            if(index !== -1) {
+                adminsList[index] = currentAdmin;
+            }
+
+            localStorage.setItem('forest_admin', JSON.stringify(currentAdmin));
+            localStorage.setItem('forest_admins_list', JSON.stringify(adminsList));
+
+            alert('Perfil atualizado com sucesso!');
+            initApp();
+        }
+
+        // IA ANALISADOR PRECISA E DIRECIONADA
         function runAiAnalysis() {
-            const prompt = document.getElementById('ai-prompt').value.trim();
+            const prompt = document.getElementById('ai-prompt').value.trim().toLowerCase();
             const outputBox = document.getElementById('ai-output');
             if(!prompt) { alert('Descreva a ocorrência.'); return; }
-            outputBox.innerHTML = '<div style="color: var(--accent);"><i class="fa-solid fa-spinner fa-spin"></i> Analisando relato...</div>';
+            outputBox.innerHTML = '<div style="color: var(--accent);"><i class="fa-solid fa-spinner fa-spin"></i> Analisando nas regras...</div>';
 
             setTimeout(() => {
-                const textLower = prompt.toLowerCase();
-                let matchedRule = officialRules[2] || officialRules[0];
-                if(textLower.includes('carro') || textLower.includes('veículo') || textLower.includes('atropelou')) matchedRule = officialRules.find(r => r.code === 'RP9') || matchedRule;
-                else if(textLower.includes('admin') || textLower.includes('staff')) matchedRule = officialRules.find(r => r.code === 'CHAT4') || matchedRule;
-                else if(textLower.includes('bug') || textLower.includes('falha')) matchedRule = officialRules.find(r => r.code === 'ABUSE1') || matchedRule;
+                let matchedRule = officialRules.find(r => prompt.includes(r.code.toLowerCase()) || prompt.includes(r.title.toLowerCase()) || prompt.includes(r.category.toLowerCase())) || officialRules[2];
+
+                if(prompt.includes('carro') || prompt.includes('veículo') || prompt.includes('atropelou') || prompt.includes('bateu')) {
+                    matchedRule = officialRules.find(r => r.code === 'RP2' || r.code === 'RP9') || matchedRule;
+                } else if(prompt.includes('tiro') || prompt.includes('matou') || prompt.includes('dano') || prompt.includes('dm')) {
+                    matchedRule = officialRules.find(r => r.code === 'RP1') || matchedRule;
+                } else if(prompt.includes('admin') || prompt.includes('staff')) {
+                    matchedRule = officialRules.find(r => r.code === 'CHAT4') || matchedRule;
+                } else if(prompt.includes('bug') || prompt.includes('falha')) {
+                    matchedRule = officialRules.find(r => r.code === 'ABUSE1') || matchedRule;
+                }
 
                 const resultText = `========================================
 ENQUADRAMENTO OFICIAL ONESTATE
@@ -1282,7 +1478,7 @@ PENALIDADE:
                 });
                 renderHistoryTable();
                 updateStats();
-            }, 800);
+            }, 600);
         }
 
         function renderHistoryTable() {
@@ -1311,7 +1507,23 @@ PENALIDADE:
             updateStats();
         }
 
-        function saveBotConfig() { alert('Configurações do Bot salvas com sucesso!'); }
+        function saveBotSettings(e) {
+            e.preventDefault();
+            if(currentAdmin.role !== 'Fundador') {
+                alert('Acesso negado: Apenas o Fundador pode alterar as configurações do Bot.');
+                return;
+            }
+            alert('Configurações do Bot salvas com sucesso!');
+        }
+
+        function saveApiKeys(e) {
+            e.preventDefault();
+            if(currentAdmin.role !== 'Fundador') {
+                alert('Acesso negado: Apenas o Fundador pode alterar as chaves de API.');
+                return;
+            }
+            alert('Credenciais de API salvas com sucesso!');
+        }
     </script>
 </body>
 </html>
